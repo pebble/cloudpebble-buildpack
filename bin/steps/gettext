@@ -9,6 +9,7 @@ pushd $TARGET_DIR
 	fi
 
 	echo "-----> Installing gettext..."
-	curl --silent --max-time 60 --location "$GETTEXT_TARBALL" | tar xz
+	# curl helpfully automatically decompresses this for us.
+	curl --silent --max-time 60 --location "$GETTEXT_TARBALL" | tar x
 	echo "-----> done in $TARGET_DIR/gettext"
 popd

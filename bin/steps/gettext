@@ -4,13 +4,11 @@ set +e
 GETTEXT_TARBALL=https://s3.amazonaws.com/static.cloudpebble.net/buildpack/gettext.tar.gz
 TARGET_DIR=$BUILD_DIR/.heroku
 
-if [ -d $TARGET_DIR/gettext ]; then
-	exit 0
+if ! [ -d $TARGET_DIR/gettext ]; then
+	echo "-----> Installing gettext..."
+	pushd $TARGET_DIR
+		# curl helpfully automatically decompresses this for us.
+		curl --silent --max-time 60 --location "$GETTEXT_TARBALL" | tar x
+	popd
+	echo "-----> done in $TARGET_DIR/gettext"
 fi
-
-echo "-----> Installing gettext..."
-pushd $TARGET_DIR
-	# curl helpfully automatically decompresses this for us.
-	curl --silent --max-time 60 --location "$GETTEXT_TARBALL" | tar x
-popd
-echo "-----> done in $TARGET_DIR/gettext"

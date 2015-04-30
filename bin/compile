@@ -86,7 +86,7 @@ ORIG_BUILD_DIR=$BUILD_DIR
 BUILD_DIR=$APP_DIR
 
 # Prepend proper path buildpack use.
-export PATH=$BUILD_DIR/.heroku/python/bin:$BUILD_DIR/.heroku/vendor/bin:$PATH
+export PATH=$BUILD_DIR/.heroku/gettext/bin:$BUILD_DIR/.heroku/python/bin:$BUILD_DIR/.heroku/vendor/bin:$PATH
 export PYTHONUNBUFFERED=1
 export LANG=en_US.UTF-8
 export C_INCLUDE_PATH=/app/.heroku/vendor/include:$BUILD_DIR/.heroku/vendor/include:/app/.heroku/python/include
@@ -150,6 +150,9 @@ mkdir -p $(dirname $PROFILE_PATH)
 
 # Install Python.
 source $BIN_DIR/steps/python
+
+# Install gettext.
+source $BIN_DIR/steps/gettext
 
 # Sanity check for setuptools/distribute.
 source $BIN_DIR/steps/setuptools

@@ -11,6 +11,13 @@ bpwatch start collectstatic
 
 if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ]; then
     set +e
+    echo "-----> Installing bower packages."
+    set +e
+    OLD_PATH="$PATH"
+    export PATH=$BUILD_DIR/.heroku/vendor/node/bin:$PATH
+    python $MANAGE_FILE bower install
+    export PATH="$OLD_PATH"
+    set -e
 
     echo "-----> Preparing static assets"
     # Check if collectstatic is configured properly.

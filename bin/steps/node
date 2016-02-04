@@ -30,9 +30,13 @@ if [ ! -f $BUILD_DIR/.heroku/bower-version ]; then
   # Install bower
   puts-step "Downloading and installing bower"
   npm install -g bower 2>&1 | indent
-  npm install -g uglifyjs 2>&1 | indent
 
   # Save installed bower version in the slug for later reference
   npm list -g --depth=0 | grep bower | cut -d @ -f 2 > $BUILD_DIR/.heroku/bower-version
 fi
 
+puts-step "Downloading and installing uglifyjs"
+npm install -g uglifyjs 2>&1 | indent
+
+puts-step "Downloading and installing clean-css"
+npm install -g clean-css 2>&1 | indent

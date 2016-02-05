@@ -148,8 +148,6 @@ set -e
 
 mkdir -p $(dirname $PROFILE_PATH)
 
-echo "Installing #pipeline build-pack variant"
-
 # Install Python.
 source $BIN_DIR/steps/python
 

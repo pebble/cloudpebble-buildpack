@@ -36,7 +36,7 @@ if [ ! -f $BUILD_DIR/.heroku/bower-version ]; then
 fi
 
 puts-step "Downloading and installing uglify-js"
-npm install -g uglifyjs 2>&1 | indent
+npm install -g uglify-js 2>&1 | indent
 
 puts-step "Downloading and installing clean-css"
 npm install -g clean-css 2>&1 | indent

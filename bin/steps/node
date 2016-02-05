@@ -35,8 +35,8 @@ if [ ! -f $BUILD_DIR/.heroku/bower-version ]; then
   npm list -g --depth=0 | grep bower | cut -d @ -f 2 > $BUILD_DIR/.heroku/bower-version
 fi
 
-puts-step "Downloading and installing uglifyjs"
-npm install -g uglifyjs 2>&1 | indent
+puts-step "Downloading and installing uglify-js"
+npm install -g uglify-js 2>&1 | indent
 
 puts-step "Downloading and installing clean-css"
 npm install -g clean-css 2>&1 | indent

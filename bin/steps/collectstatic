@@ -16,7 +16,6 @@ if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ]; then
     OLD_PATH="$PATH"
     export PATH=$BUILD_DIR/.heroku/vendor/node/bin:$PATH
     python $MANAGE_FILE bower install
-    export PATH="$OLD_PATH"
     set -e
 
     echo "-----> Preparing static assets"
@@ -27,7 +26,7 @@ if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ]; then
     if [ "$RUN_COLLECTSTATIC" ]; then
 
         echo "       Running collectstatic..."
-        python $MANAGE_FILE collectstatic --noinput  2>&1 | sed '/^Copying/d;/^$/d;/^ /d' | indent
+        python $MANAGE_FILE collectstatic --noinput  2>&1 | indent
 
         [ $? -ne 0 ] && {
             echo " !     Error running 'manage.py collectstatic'. More info:"
@@ -37,6 +36,8 @@ if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ]; then
         echo "       Collectstatic configuration error. To debug, run:"
         echo "       $ heroku run python $MANAGE_FILE collectstatic --noinput"
     fi
+
+    export PATH="$OLD_PATH"
     echo
 fi
 
